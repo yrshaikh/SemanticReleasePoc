@@ -1,13 +1,18 @@
 module.exports = {
     branches: ['main'],
-    prepare: [{
-        path: "@semantic-release/exec",
-        cmd: "echo prepare"
-    }],
-    publish: [
-        "@semantic-release/github", {
-            path: "@semantic-release/exec",
-            cmd: "echo publish"
+    "verifyConditions": ["@semantic-release/github"],
+    "prepare": 
+    [
+        {
+            "path": "@semantic-release/exec",
+            "cmd": "set-version ${nextRelease.version}"
         }
-    ]
+    ],
+    "publish": [
+        "@semantic-release/github",
+        {
+            "path": "@semantic-release/exec",
+            "cmd": "publish-package"
+        }
+    ],
 }

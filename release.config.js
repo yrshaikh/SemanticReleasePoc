@@ -7,7 +7,7 @@ module.exports = {
     publish: [
         "@semantic-release/github", {
             path: "@semantic-release/exec",
-            cmd: "echo publish
+            cmd: "echo publish"
         }
     ]
 }

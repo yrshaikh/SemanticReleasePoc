@@ -5,14 +5,14 @@ module.exports = {
     [
         {
             "path": "@semantic-release/exec",
-            "cmd": "set-version ${nextRelease.version}"
+            "cmd": "echo ${nextRelease.version}"
         }
     ],
     "publish": [
         "@semantic-release/github",
         {
             "path": "@semantic-release/exec",
-            "cmd": "publish-package"
+            "cmd": "echo ${nextRelease.version}"
         }
     ],
 }

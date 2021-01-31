@@ -7,7 +7,9 @@ on:
     branches: [ main ]
 
 env:
-  SLN_FILE: .\SemanticReleaesPoc\SemanticReleaesPoc.sln
+  SLN_FILE: .\SemanticReleaesPoc\SemanticReleaesPoc.sln  
+  GH_TOKEN: ${{ secrets.GH_PAT }}
+  NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
 
 jobs:
   build:
@@ -26,3 +28,18 @@ jobs:
       run: dotnet build $SLN_FILE --no-restore
     - name: Test
       run: dotnet test $SLN_FILE --no-build --verbosity normal
+
+  publish:
+    needs: [ build ]
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+      - name: Semantic Release
+        uses: cycjimmy/semantic-release-action@v2
+        with:
+          extra_plugins: |
+            @semantic-release/git@7.0.18
+            @semantic-release/exec@3.3.8
+            @semantic-release/changelog@3.0.0

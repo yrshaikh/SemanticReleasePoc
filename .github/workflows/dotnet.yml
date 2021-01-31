@@ -6,6 +6,9 @@ on:
   pull_request:
     branches: [ main ]
 
+env:
+  SLN_FILE: .\SemanticReleaesPoc\SemanticReleaesPoc.sln
+
 jobs:
   build:
 
@@ -18,8 +21,8 @@ jobs:
       with:
         dotnet-version: 5.0.x
     - name: Restore dependencies
-      run: dotnet restore .\SemanticReleaesPoc\SemanticReleaesPoc.sln
+      run: dotnet restore $SLN_FILE
     - name: Build
-      run: dotnet build .\SemanticReleaesPoc\SemanticReleaesPoc.sln --no-restore
+      run: dotnet build $SLN_FILE --no-restore
     - name: Test
-      run: dotnet test .\SemanticReleaesPoc\SemanticReleaesPoc.sln --no-build --verbosity normal
+      run: dotnet test $SLN_FILE --no-build --verbosity normal

@@ -1,3 +1,5 @@
 module.exports = {
-  branches: ['main']
+  branches: ['main'],
+  prepare: [],
+  publish: []
 }
